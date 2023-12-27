@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.appsnipp.cloudcashier.MainActivity2"
+    tools:showIn="@layout/app_bar_main"
+    style="@style/parent.contentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/good_morning_img">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Logout" />
+
+
+            <TextView
+                style="@style/viewParent.headerText"
+                android:text="Cloud Cashier" />
+
+
+            <!-- Example CardView 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="onCardView1Click"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/home_gradient_maths"
+                    android:minHeight="100dp"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/textViewSub1Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Transport" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub1Title"
+                        android:text="Car payment, Fuel expenses, Bus, etc" />
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/camper" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:onClick="onCardView2Click">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/gradientOrange"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/gradientLightYellow">
+
+                    <TextView
+                        android:id="@+id/textViewSub2Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Utilities" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub2Title"
+                        android:text="Electricity,Water,Gas,Internet,phone" />
+
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/bills" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/gradientLightYellow2"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/gradientLightOrange2">
+
+                    <TextView
+                        android:id="@+id/textViewSub3Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Food" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub3Title"
+                        android:text="Groceries,Dining out,fastfood,Delivery" />
+
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/dinner" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/gradientOrange3"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/gradientLightOrange2">
+
+                    <TextView
+                        android:id="@+id/textViewSub4Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Insurance" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub4Title"
+                        android:text="Health,life,home,car,etc" />
+
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/insurance1" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/gradientLightBlue"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/gradientViolet">
+
+                    <TextView
+                        android:id="@+id/textViewSub5Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Personal Care" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub5Title"
+                        android:text="Haircuts,toiletries product,Gym,etc" />
+
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/personalcare" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/gradientLightBlue"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/gradientLightGreen">
+
+                    <TextView
+                        android:id="@+id/textViewSub6Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Home Maintenance" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub6Title"
+                        android:text="Home repairs,clening suplies,etc" />
+
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/house" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/gradientOrange"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/gradientLightYellow">
+
+                    <TextView
+                        android:id="@+id/textViewSub7Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Entertainment" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub7Title"
+                        android:text="OTT,movie tickets,etc" />
+
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/entertainment" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/gradientOrange"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/gradientLightYellow">
+
+                    <TextView
+                        android:id="@+id/textViewSub8Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Education" />
+
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub8Title"
+                        android:text="school/college,stationary,Books,etc" />
+
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/education" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <!-- Add more CardViews for cardView2, cardView3, etc., with similar structure -->
+            <!-- Make sure to set unique IDs and define click handlers -->
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

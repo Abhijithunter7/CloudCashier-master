@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">CloudCashier</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login" />
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="CloudCashier">CloudCashier</string>
+
+    <string-array name="options_array">
+        <item>Car Payment</item>
+        <item>Auto Payment</item>
+        <item>Fuel Expenses</item>
+        <item>Bus Expenses</item>
+        <item>Metro Payment</item>
+        <item>Flight Payment</item>
+        <item>Train Payment</item>
+    </string-array>
+
+    <string-array name="bill_options">
+        <item>Electricity</item>
+        <item>Water</item>
+        <item>Sewer</item>
+        <item>Gas or Heating oil</item>
+        <item>Internet</item>
+        <item>Cable</item>
+        <item>Phone bills</item>
+    </string-array>
+
+
+    <string-array name="food_options">
+        <item>Groceries</item>
+        <item>Food products</item>
+        <item>Dairy products and analogues</item>
+        <item>Cereals and cereal products</item>
+        <item>Edible ices, including sorbet</item>
+        <item>Bakery products</item>
+        <item>Meat and meat products</item>
+        <item>Fish and fish products</item>
+        <item>Eggs and egg products</item>
+        <item>Salts, spices, soups, sauces, salads and protein products</item>
+        <item>Products not covered in categories</item>
+    </string-array>
+
+    <string-array name="insurance_options">
+        <item>Motor insurance</item>
+        <item>Health insurance</item>
+        <item>General insurance</item>
+        <item>Umbrella insurance</item>
+        <item>Liability insurance</item>
+        <item>Commercial insurance</item>
+        <item>Life insurance</item>
+        <item>Home insurance</item>
+        <item>Travel insurance</item>
+        <item>Term Life insurance</item>
+        <item>Endowment policy</item>
+        <item>Critical insurance</item>
+        <item>Crop insurance</item>
+        <item>Child insurance</item>
+        <item>Marine insurance</item>
+        <item>Accidental death and dismemberment insurance</item>
+        <item>Business interruption insurance</item>
+    </string-array>
+
+    <string-array name="entertainment_options">
+    <item>Movie</item>
+    <item>games</item>
+    <item>music</item>
+    <item>television</item>
+    <item>sports</item>
+    <item>dance</item>
+    <item>media</item>
+    <item>fashion</item>
+    <item>circus</item>
+    <item>events</item>
+    <item>carnival</item>
+    <item>art exhibits</item>
+    </string-array>
+
+    <string-array name="education_options">
+        <item>formal education</item>
+        <item>secondary education</item>
+        <item>primary</item>
+        <item>early childhood education</item>
+        <item>tertiary education</item>
+        <item>informal education</item>
+    </string-array>
+
+</resources>
+
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="logoutButton" type="id" />
+    <item name="cardView1" type="id" />
+    <item name="textViewSub1Title" type="id" />
+    <item name="img1" type="id" />
+
+
+
+
+</resources>

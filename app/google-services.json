@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "270560632639",
+    "project_id": "cloudcashier-12864",
+    "storage_bucket": "cloudcashier-12864.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270560632639:android:db8576d088189aaec33d8a",
+        "android_client_info": {
+          "package_name": "com.appsnipp.cloudcashier"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqQVVcFyWD2qPN4DG66hNKZ7f8eh-fSuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
