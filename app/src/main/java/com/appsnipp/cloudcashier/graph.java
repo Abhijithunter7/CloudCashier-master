@@ -27,6 +27,7 @@ public class graph extends AppCompatActivity {
         setContentView(R.layout.activity_expense_chart);
 
         // Initialize the LineChart
+        //sdfdhfgdhjfhgj
         expenseLineChart = findViewById(R.id.expenseLineChart);
         expensesRef = FirebaseDatabase.getInstance().getReference().child("expenses");
 
