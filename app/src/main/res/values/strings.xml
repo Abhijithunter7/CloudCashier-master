@@ -73,18 +73,18 @@
     </string-array>
 
     <string-array name="entertainment_options">
-    <item>Movie</item>
-    <item>games</item>
-    <item>music</item>
-    <item>television</item>
-    <item>sports</item>
-    <item>dance</item>
-    <item>media</item>
-    <item>fashion</item>
-    <item>circus</item>
-    <item>events</item>
-    <item>carnival</item>
-    <item>art exhibits</item>
+        <item>Movie</item>
+        <item>games</item>
+        <item>music</item>
+        <item>television</item>
+        <item>sports</item>
+        <item>dance</item>
+        <item>media</item>
+        <item>fashion</item>
+        <item>circus</item>
+        <item>events</item>
+        <item>carnival</item>
+        <item>art exhibits</item>
     </string-array>
 
     <string-array name="education_options">

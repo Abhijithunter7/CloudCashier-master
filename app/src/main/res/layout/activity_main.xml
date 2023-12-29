@@ -20,10 +20,10 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="241dp"
-            android:layout_height="223dp"
-            android:layout_marginTop="150sp"
+            android:layout_width="224dp"
+            android:layout_height="225dp"
             android:layout_marginLeft="90sp"
+            android:layout_marginTop="150sp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/logo_transparent" />
 
