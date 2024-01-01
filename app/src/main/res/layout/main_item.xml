@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp"
+    android:elevation="6dp"
+    app:cardUseCompatPadding="true">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tittlerecy"
+            android:text="name"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/darkTextColor"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/optionrecy"
+            android:text="selected options"
+            android:layout_below="@+id/tittlerecy"
+            android:textSize="25sp"
+            android:textColor="@color/darkTextColor"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pricerecy"
+            android:text="price"
+            android:layout_below="@+id/optionrecy"
+            android:textSize="25sp"
+            android:textColor="@color/darkTextColor"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/noterecy"
+            android:text="note"
+            android:layout_below="@+id/pricerecy"
+            android:textSize="25sp"
+            android:textColor="@color/darkTextColor"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
