@@ -10,11 +10,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class home_maintenance extends AppCompatActivity {
 
-    private EditText titleEditText, priceEditText, noteEditText;
+    private EditText titleEditText, editPrice, noteEditText;
     private Spinner optionsSpinner;
     private Button saveButton;
+
+    private DatabaseReference transportRef;
 
 
     @Override
@@ -22,10 +27,13 @@ public class home_maintenance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_maintenance);
 
+        // Initialize Firebase Database reference
+        transportRef = FirebaseDatabase.getInstance().getReference().child("home_maintenance");
+
         // Initialize views
         titleEditText = findViewById(R.id.HomemaintenancetitleEditText);
         optionsSpinner = findViewById(R.id.HomemaintenanceoptionsSpinner);
-        priceEditText = findViewById(R.id.HomemaintenancepriceEditText);
+        editPrice = findViewById(R.id.HomemaintenancepriceEditText);
         noteEditText = findViewById(R.id.HomemaintenancenoteEditText);
         saveButton = findViewById(R.id.HomemaintenancesaveButton);
 
@@ -42,14 +50,18 @@ public class home_maintenance extends AppCompatActivity {
         // Implement your logic to save data
         String title = titleEditText.getText().toString();
         String options = optionsSpinner.getSelectedItem().toString();
-        String price = priceEditText.getText().toString();
+        double price = Double.parseDouble(editPrice.getText().toString());
         String note = noteEditText.getText().toString();
 
-        // Perform your logic here, e.g., save the data or show a message
-        String message = "Title: " + title + "\nOption: " + options + "\nPrice: " + price + "\nNote: " + note;
-        Toast.makeText(home_maintenance.this, message, Toast.LENGTH_SHORT).show();
 
-        // Add your logic to save this data to your database or perform any other actions.
-        // For example, you might want to create a HomeMaintenance class and save an instance of it.
+        // Create a new object to represent the data
+        home_maintenance_data homeData = new home_maintenance_data(title, options, price, note);
+
+        // Save the data to Firebase
+        transportRef.push().setValue(homeData);
+
+        // Show a message or perform other actions if needed
+        String message = "Data saved to Firebase!";
+        Toast.makeText(home_maintenance.this, message, Toast.LENGTH_SHORT).show();
     }
 }

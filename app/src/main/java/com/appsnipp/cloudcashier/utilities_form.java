@@ -12,6 +12,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.utilities.Utilities;
+
 public class utilities_form extends AppCompatActivity {
 
     private EditText titleEditText;
@@ -20,10 +24,15 @@ public class utilities_form extends AppCompatActivity {
     private EditText noteEditText;
     private Button saveButton;
 
+    private DatabaseReference transportRef;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_utilities_form);
+
+        // Initialize Firebase Database reference
+        transportRef = FirebaseDatabase.getInstance().getReference().child("utilities");
 
         // Initialize UI elements
         titleEditText = findViewById(R.id.utiedit1);
@@ -69,8 +78,14 @@ public class utilities_form extends AppCompatActivity {
 
 
 
-                // Perform your logic here, e.g., save the data or show a message
-                String message = "Title: " + title + "\nOption: " + option + "\nPrice: " + price + "\nNote: " + note;
+                // Create a new object to represent the data
+                utilitiesdata utilitiesda = new utilitiesdata(title, option, price, note);
+
+                // Save the data to Firebase
+                transportRef.push().setValue(utilitiesda);
+
+                // Show a message or perform other actions if needed
+                String message = "Data saved to Firebase!";
                 Toast.makeText(utilities_form.this, message, Toast.LENGTH_SHORT).show();
             }
         });

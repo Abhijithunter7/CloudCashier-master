@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Education extends AppCompatActivity {
 
@@ -17,10 +21,15 @@ public class Education extends AppCompatActivity {
     private EditText editNote;
     private Button saveButton;
 
+    private DatabaseReference transportRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education); // Replace with your XML layout filename
+
+        // Initialize Firebase Database reference
+        transportRef = FirebaseDatabase.getInstance().getReference().child("education");
 
         // Initialize UI elements
         editTitle = findViewById(R.id.educationtitleEditText);
@@ -48,13 +57,15 @@ public class Education extends AppCompatActivity {
                 double price = Double.parseDouble(editPrice.getText().toString());
                 String note = editNote.getText().toString();
 
-                // Do something with the user's input, e.g., save it to a database
-                // You can add your logic here
+                // Create a new object to represent the data
+                educationdata educationda = new educationdata(title, selectedOption, price, note);
 
-                // Clear the input fields if needed
-                editTitle.setText("");
-                editPrice.setText("");
-                editNote.setText("");
+                // Save the data to Firebase
+                transportRef.push().setValue(educationda);
+
+                // Show a message or perform other actions if needed
+                String message = "Data saved to Firebase!";
+                Toast.makeText(Education.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }

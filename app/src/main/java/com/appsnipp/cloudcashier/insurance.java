@@ -8,8 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class insurance extends AppCompatActivity {
 
@@ -18,10 +23,16 @@ public class insurance extends AppCompatActivity {
     private EditText priceEditText;
     private EditText noteEditText;
     private Button saveButton;
+
+    private DatabaseReference transportRef;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insurance);
+
+        // Initialize Firebase Database reference
+        transportRef = FirebaseDatabase.getInstance().getReference().child("insurance");
 
         // Initialize views
         titleEditText = findViewById(R.id.insurancetitleEditText);
@@ -63,7 +74,15 @@ public class insurance extends AppCompatActivity {
                 double price = Double.parseDouble(priceEditText.getText().toString());
                 String note = noteEditText.getText().toString();
 
-                // You can save or process this data as needed
+                // Create a new object to represent the data
+                insurancedata insuranceda = new insurancedata(title, selectedOption, price, note);
+
+                // Save the data to Firebase
+                transportRef.push().setValue(insuranceda);
+
+                // Show a message or perform other actions if needed
+                String message = "Data saved to Firebase!";
+                Toast.makeText(insurance.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }

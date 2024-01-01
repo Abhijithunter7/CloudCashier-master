@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class entertainment extends AppCompatActivity {
 
@@ -17,10 +21,15 @@ public class entertainment extends AppCompatActivity {
     private EditText editNote;
     private Button saveButton;
 
+    private DatabaseReference transportRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entertainment); // Replace with your XML layout filename
+
+        // Initialize Firebase Database reference
+        transportRef = FirebaseDatabase.getInstance().getReference().child("entertainment");
 
         // Initialize UI elements
         editTitle = findViewById(R.id.entertainmenttitleEditText);
@@ -48,13 +57,15 @@ public class entertainment extends AppCompatActivity {
                 double price = Double.parseDouble(editPrice.getText().toString());
                 String note = editNote.getText().toString();
 
-                // Do something with the user's input, e.g., save it to a database
-                // You can add your logic here
+                // Create a new object to represent the data
+                entertainmentdata entertainmenetda = new entertainmentdata(title, selectedOption, price, note);
 
-                // Clear the input fields if needed
-                editTitle.setText("");
-                editPrice.setText("");
-                editNote.setText("");
+                // Save the data to Firebase
+                transportRef.push().setValue(entertainmenetda);
+
+                // Show a message or perform other actions if needed
+                String message = "Data saved to Firebase!";
+                Toast.makeText(entertainment.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }

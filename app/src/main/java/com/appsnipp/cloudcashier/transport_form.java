@@ -1,5 +1,6 @@
 package com.appsnipp.cloudcashier;
 
+// transport_form.java
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -7,11 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class transport_form extends AppCompatActivity {
 
@@ -21,10 +22,15 @@ public class transport_form extends AppCompatActivity {
     private EditText noteEditText;
     private Button saveButton;
 
+    private DatabaseReference transportRef;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport_form);
+
+        // Initialize Firebase Database reference
+        transportRef = FirebaseDatabase.getInstance().getReference().child("transport");
 
         // Initialize views
         titleEditText = findViewById(R.id.titleEditText);
@@ -46,7 +52,6 @@ public class transport_form extends AppCompatActivity {
         optionsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedOption = parentView.getItemAtPosition(position).toString();
                 // You can do something with the selected option here
             }
 
@@ -66,8 +71,14 @@ public class transport_form extends AppCompatActivity {
                 double price = Double.parseDouble(priceEditText.getText().toString());
                 String note = noteEditText.getText().toString();
 
-                // Perform your logic here, e.g., save the data or show a message
-                String message = "Title: " + title + "\nOption: " + selectedOption + "\nPrice: " + price + "\nNote: " + note;
+                // Create a new object to represent the data
+                TransportData transportData = new TransportData(title, selectedOption, price, note);
+
+                // Save the data to Firebase
+                transportRef.push().setValue(transportData);
+
+                // Show a message or perform other actions if needed
+                String message = "Data saved to Firebase!";
                 Toast.makeText(transport_form.this, message, Toast.LENGTH_SHORT).show();
             }
         });
