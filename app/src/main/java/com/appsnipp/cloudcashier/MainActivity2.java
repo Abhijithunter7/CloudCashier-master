@@ -176,6 +176,8 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                 Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.navigationMyProfile:
+                        Intent profileIntent = new Intent(MainActivity2.this, profile.class);
+                        startActivity(profileIntent);
                         return true;
                     case R.id.navigationHome:
                         return true;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,6 +15,7 @@
 
     <!-- Action Buttons -->
 
+
     <ImageView
         android:id="@+id/userProfilePicture"
         android:layout_width="53dp"
@@ -27,32 +27,37 @@
         app:layout_constraintBottom_toTopOf="@+id/userName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintVertical_bias="0.741" />
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="169dp"
         android:layout_height="22dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:text="John Doe"
         android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toEndOf="@+id/userProfilePicture"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/userEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="john.doe@example.com"
-        android:textSize="15sp"
+        android:layout_width="225dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="6dp"
+        android:inputType="text"
+        android:text="abhijitraul@gmail.com"
+        android:textColor="@color/Black"
+        android:textSize="19sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toEndOf="@+id/userProfilePicture"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/editProfileButton"
@@ -66,16 +71,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userProfilePicture" />
 
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="114dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:text="Logout"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfileButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

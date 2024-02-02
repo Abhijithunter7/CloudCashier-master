@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,9 @@ public class registration extends AppCompatActivity {
     TextView alreadyUser;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
+    ImageView imageView;
+    TextView textView;
+    int count = 0;
 
 
     @Override
@@ -55,6 +59,37 @@ public class registration extends AppCompatActivity {
         editTextpassword = findViewById(R.id.regpass);
         editTextconfirmPassword = findViewById(R.id.regconf_pass);
         alreadyUser = findViewById(R.id.already_user_textview);
+        imageView = findViewById(R.id.imageView1);
+
+        imageView.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()) {
+            public void onSwipeTop() {}
+
+            public void onSwipeRight() {
+                if (count == 0) {
+                    imageView.setImageResource(R.drawable.good_night_img);
+                    textView.setText("Night");
+                    count = 1;
+                } else {
+                    imageView.setImageResource(R.drawable.good_morning_img);
+                    textView.setText("Morning");
+                    count = 0;
+                }
+            }
+
+            public void onSwipeLeft() {
+                if (count == 0) {
+                    imageView.setImageResource(R.drawable.good_night_img);
+                    textView.setText("Night");
+                    count = 1;
+                } else {
+                    imageView.setImageResource(R.drawable.good_morning_img);
+                    textView.setText("Morning");
+                    count = 0;
+                }
+            }
+
+            public void onSwipeBottom() {}
+        });
 
 
         alreadyUser.setOnClickListener(new View.OnClickListener() {
