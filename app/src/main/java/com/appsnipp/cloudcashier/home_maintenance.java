@@ -10,14 +10,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class home_maintenance extends AppCompatActivity {
 
-    private EditText titleEditText, editPrice, noteEditText;
+    private EditText editTitle, editPrice, noteEditText;
     private Spinner optionsSpinner;
     private Button saveButton;
+    private FirebaseAuth auth;
 
     private DatabaseReference transportRef;
 
@@ -29,9 +35,10 @@ public class home_maintenance extends AppCompatActivity {
 
         // Initialize Firebase Database reference
         transportRef = FirebaseDatabase.getInstance().getReference().child("home_maintenance");
+        auth = FirebaseAuth.getInstance();
 
         // Initialize views
-        titleEditText = findViewById(R.id.HomemaintenancetitleEditText);
+        editTitle = findViewById(R.id.HomemaintenancetitleEditText);
         optionsSpinner = findViewById(R.id.HomemaintenanceoptionsSpinner);
         editPrice = findViewById(R.id.HomemaintenancepriceEditText);
         noteEditText = findViewById(R.id.HomemaintenancenoteEditText);
@@ -48,14 +55,17 @@ public class home_maintenance extends AppCompatActivity {
 
     private void saveData() {
         // Implement your logic to save data
-        String title = titleEditText.getText().toString();
-        String options = optionsSpinner.getSelectedItem().toString();
+        String title = editTitle.getText().toString();
+        String option = optionsSpinner.getSelectedItem().toString();
         double price = Double.parseDouble(editPrice.getText().toString());
         String note = noteEditText.getText().toString();
 
+        String dateTime = getCurrentDateTime();
+        FirebaseUser user = auth.getCurrentUser();
+        String userName = user != null ? user.getDisplayName() : "Unknown User";
 
         // Create a new object to represent the data
-        home_maintenance_data homeData = new home_maintenance_data(title, options, price, note);
+        TransportData homeData = new TransportData(title, option,price, note,dateTime,userName);
 
         // Save the data to Firebase
         transportRef.push().setValue(homeData);
@@ -63,5 +73,9 @@ public class home_maintenance extends AppCompatActivity {
         // Show a message or perform other actions if needed
         String message = "Data saved to Firebase!";
         Toast.makeText(home_maintenance.this, message, Toast.LENGTH_SHORT).show();
+    }
+    private String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +19,7 @@ import com.google.firebase.ktx.Firebase;
 public class forget_password extends AppCompatActivity {
 
     private Button forgetbut;
+    private TextView back;
     private EditText txtemail;
     private String Email;
     private FirebaseAuth auth;
@@ -32,11 +34,19 @@ public class forget_password extends AppCompatActivity {
 
         txtemail = findViewById(R.id.forgotemail);
         forgetbut = findViewById(R.id.continuebutton);
+        back = findViewById(R.id.backsign);
 
         forgetbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validatedata();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(forget_password.this, MainActivity.class));
             }
         });
 

@@ -10,16 +10,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 public class food extends AppCompatActivity {
 
     private EditText editTitle;
-    private Spinner spinOptions;
+    private Spinner optionsSpinner;
     private EditText editPrice;
     private EditText editNote;
     private Button saveButton;
+    private FirebaseAuth auth;
 
     private DatabaseReference transportRef;
 
@@ -30,10 +35,11 @@ public class food extends AppCompatActivity {
 
         // Initialize Firebase Database reference
         transportRef = FirebaseDatabase.getInstance().getReference().child("food");
+        auth = FirebaseAuth.getInstance();
 
         // Initialize UI elements
         editTitle = findViewById(R.id.foodtitleEditText);
-        spinOptions = findViewById(R.id.foodoptionsSpinner);
+        optionsSpinner = findViewById(R.id.foodoptionsSpinner);
         editPrice = findViewById(R.id.foodpriceEditText);
         editNote = findViewById(R.id.foodnoteEditText);
         saveButton = findViewById(R.id.foodsaveButton);
@@ -45,7 +51,7 @@ public class food extends AppCompatActivity {
                 android.R.layout.simple_spinner_item
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinOptions.setAdapter(adapter);
+        optionsSpinner.setAdapter(adapter);
 
         // Set an OnClickListener for the Save button
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -53,13 +59,16 @@ public class food extends AppCompatActivity {
             public void onClick(View v) {
                 // Get the values entered by the user
                 String title = editTitle.getText().toString();
-                String selectedOption = spinOptions.getSelectedItem().toString();
+                String option = optionsSpinner.getSelectedItem().toString();
                 double price = Double.parseDouble(editPrice.getText().toString());
                 String note = editNote.getText().toString();
 
+                String dateTime = getCurrentDateTime();
+                FirebaseUser user = auth.getCurrentUser();
+                String userName = user != null ? user.getDisplayName() : "Unknown User";
 
                 // Create a new object to represent the data
-                fooddata foodda = new fooddata(title, selectedOption, price, note);
+                TransportData foodda = new TransportData(title, option, price, note, dateTime,userName);
 
                 // Save the data to Firebase
                 transportRef.push().setValue(foodda);
@@ -69,5 +78,9 @@ public class food extends AppCompatActivity {
                 Toast.makeText(food.this, message, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }

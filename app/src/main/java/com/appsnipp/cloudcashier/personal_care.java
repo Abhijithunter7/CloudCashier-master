@@ -11,14 +11,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class personal_care extends AppCompatActivity {
 
-    private EditText titleEditText, priceEditText, noteEditText;
+    private EditText editTitle, priceEditText, noteEditText;
     private Spinner optionsSpinner;
     private Button saveButton;
+    private FirebaseAuth auth;
 
     private DatabaseReference transportRef;
 
@@ -30,8 +37,10 @@ public class personal_care extends AppCompatActivity {
         // Initialize Firebase Database reference
         transportRef = FirebaseDatabase.getInstance().getReference().child("personal_care");
 
+        auth = FirebaseAuth.getInstance();
+
         // Initialize UI elements
-        titleEditText = findViewById(R.id.personalcaretitleEditText);
+        editTitle = findViewById(R.id.personalcaretitleEditText);
         priceEditText = findViewById(R.id.personalcarepriceEditText);
         noteEditText = findViewById(R.id.personalcarenoteEditText);
         optionsSpinner = findViewById(R.id.personalcareoptionsSpinner);
@@ -66,13 +75,18 @@ public class personal_care extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Get the values from the EditText fields
-                String title = titleEditText.getText().toString();
+                String title = editTitle.getText().toString();
                 String option = optionsSpinner.getSelectedItem().toString();
                 double price = Double.parseDouble(priceEditText.getText().toString());
                 String note = noteEditText.getText().toString();
 
+                String dateTime = getCurrentDateTime();
+
+                FirebaseUser user = auth.getCurrentUser();
+                String userName = user != null ? user.getDisplayName() : "Unknown User";
+
                 // Create a new object to represent the data
-                personaldata personalda = new personaldata(title, option, price, note);
+                TransportData personalda = new TransportData(title, option, price, note, dateTime, userName);
 
                 // Save the data to Firebase
                 transportRef.push().setValue(personalda);
@@ -82,5 +96,9 @@ public class personal_care extends AppCompatActivity {
                 Toast.makeText(personal_care.this, message, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }

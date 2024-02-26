@@ -12,17 +12,24 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.core.utilities.Utilities;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class utilities_form extends AppCompatActivity {
 
-    private EditText titleEditText;
+    private EditText editTitle;
     private Spinner optionsSpinner;
-    private EditText priceEditText;
-    private EditText noteEditText;
+    private EditText editPrice;
+    private EditText editNote;
     private Button saveButton;
+    private FirebaseAuth auth;
 
     private DatabaseReference transportRef;
 
@@ -33,12 +40,13 @@ public class utilities_form extends AppCompatActivity {
 
         // Initialize Firebase Database reference
         transportRef = FirebaseDatabase.getInstance().getReference().child("utilities");
+        auth = FirebaseAuth.getInstance();
 
         // Initialize UI elements
-        titleEditText = findViewById(R.id.utiedit1);
+        editTitle = findViewById(R.id.utiedit1);
         optionsSpinner = findViewById(R.id.utispin1);
-        priceEditText = findViewById(R.id.utiedit2);
-        noteEditText = findViewById(R.id.utiedit3);
+        editPrice = findViewById(R.id.utiedit2);
+        editNote = findViewById(R.id.utiedit3);
         saveButton = findViewById(R.id.saveButton1);
 
         // Set an OnClickListener for the saveButton
@@ -71,15 +79,19 @@ public class utilities_form extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Get user input from the UI elements
-                String title = titleEditText.getText().toString();
+                String title = editTitle.getText().toString();
                 String option = optionsSpinner.getSelectedItem().toString();
-                double price = Double.parseDouble(priceEditText.getText().toString());
-                String note = noteEditText.getText().toString();
+                double price = Double.parseDouble(editPrice.getText().toString());
+                String note = editNote.getText().toString();
+
+                String dateTime = getCurrentDateTime();
+                FirebaseUser user = auth.getCurrentUser();
+                String userName = user != null ? user.getDisplayName() : "Unknown User";
 
 
 
                 // Create a new object to represent the data
-                utilitiesdata utilitiesda = new utilitiesdata(title, option, price, note);
+                TransportData utilitiesda = new TransportData(title, option, price, note, dateTime,userName);
 
                 // Save the data to Firebase
                 transportRef.push().setValue(utilitiesda);
@@ -89,6 +101,10 @@ public class utilities_form extends AppCompatActivity {
                 Toast.makeText(utilities_form.this, message, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }
 

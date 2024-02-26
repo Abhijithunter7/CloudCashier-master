@@ -30,6 +30,7 @@ dependencies {
     implementation 'org.testng:testng:7.4.0'
     implementation 'com.google.firebase:firebase-auth:21.0.3'
     implementation 'com.google.firebase:firebase-database:20.3.0'
+    implementation 'com.google.firebase:protolite-well-known-types:18.0.0'
     testImplementation('junit:junit:4.13.2') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
