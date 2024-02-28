@@ -1,10 +1,10 @@
 package com.appsnipp.cloudcashier;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -12,14 +12,14 @@ import com.google.firebase.database.FirebaseDatabase;
 public class recycleview extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    mainadoptor mainadoptor;
+    TransportAdapter mainadoptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycleview);
+        setContentView(R.layout.transport_item);
 
-        recyclerView =(RecyclerView)findViewById(R.id.recycle);
+        recyclerView = this.<RecyclerView>findViewById(R.id.recycle);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<Mainmodel> options =
@@ -27,7 +27,7 @@ public class recycleview extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("transport"), Mainmodel.class)
                         .build();
 
-        mainadoptor = new mainadoptor(options);
+        mainadoptor = new TransportAdapter(options);
         recyclerView.setAdapter(mainadoptor);
 
     }

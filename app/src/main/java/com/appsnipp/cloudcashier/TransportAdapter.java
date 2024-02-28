@@ -11,15 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class mainadoptor extends FirebaseRecyclerAdapter<Mainmodel,mainadoptor.myViewHolder> {
+public class TransportAdapter extends FirebaseRecyclerAdapter<Mainmodel, TransportAdapter.myViewHolder> {
 
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public mainadoptor(@NonNull FirebaseRecyclerOptions<Mainmodel> options) {
+    public TransportAdapter(@NonNull FirebaseRecyclerOptions<Mainmodel> options) {
         super(options);
     }
 

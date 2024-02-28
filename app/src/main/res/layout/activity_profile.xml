@@ -14,21 +14,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="100dp">
 
-
-            <ImageView
-                android:id="@+id/ProfilePicture"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="140dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/ic_menu_camera"
-                android:clickable="true"
-                android:contentDescription="profile pic"
-                android:onClick="openImageChooser"
-                tools:ignore="OnClick" />
 
             <EditText
                 android:id="@+id/EditName"
@@ -123,24 +112,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Blood Group"
+                android:text="how many family members are there?"
                 android:textSize="17dp"
                 android:layout_marginBottom="10dp" />
 
 
-            <Spinner
+            <EditText
                 android:id="@+id/spinnerBloodGroup"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/input_bg"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:hint="e.g 3"
+                android:paddingLeft="10dp"/>
 
             <Button
                 android:id="@+id/buttonSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save"
+                android:background="@drawable/buttonshapewhitebg"
                 android:layout_marginBottom="20dp" />
 
         </LinearLayout>
