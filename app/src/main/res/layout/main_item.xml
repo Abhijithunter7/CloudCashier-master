@@ -5,19 +5,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
     android:elevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:background="@drawable/glass_morph">
     
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:background="@drawable/side_nav_bar">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tittlerecy"
-            android:text="name"
+            android:text="Title"
             android:textStyle="bold"
+            android:padding="6dp"
             android:textSize="25sp"
             android:textColor="@color/darkTextColor"/>
 
@@ -25,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/optionrecy"
+            android:padding="6dp"
             android:text="selected options"
             android:layout_below="@+id/tittlerecy"
             android:textSize="25sp"
@@ -34,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/pricerecy"
+            android:padding="6dp"
             android:text="price"
             android:layout_below="@+id/optionrecy"
             android:textSize="25sp"
@@ -41,10 +46,21 @@
 
         <TextView
             android:layout_width="match_parent"
+            android:padding="6dp"
             android:layout_height="wrap_content"
             android:id="@+id/noterecy"
             android:text="note"
             android:layout_below="@+id/pricerecy"
+            android:textSize="25sp"
+            android:textColor="@color/darkTextColor"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:padding="6dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/datels"
+            android:text="date"
+            android:layout_below="@+id/noterecy"
             android:textSize="25sp"
             android:textColor="@color/darkTextColor"/>
 
