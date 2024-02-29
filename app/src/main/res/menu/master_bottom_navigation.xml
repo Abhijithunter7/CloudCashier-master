@@ -12,7 +12,7 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/navigationSearch"
+        android:id="@+id/navigationgraph"
         android:icon="@drawable/charthistogram"
         android:title="Graph" />
 

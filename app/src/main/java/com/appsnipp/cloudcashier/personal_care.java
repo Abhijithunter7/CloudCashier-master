@@ -49,7 +49,7 @@ public class personal_care extends AppCompatActivity {
         // Set up the options for the spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.options_array,
+                R.array.personal_care_options,
                 android.R.layout.simple_spinner_item
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

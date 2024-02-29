@@ -7,8 +7,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -68,6 +70,7 @@ public class profile extends AppCompatActivity {
             DatabaseReference userRef = databaseRef.child(userId);
             userRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
+                    Toast.makeText(this, "profile updated", Toast.LENGTH_SHORT).show();
                     profiledata userProfile = task.getResult().getValue(profiledata.class);
                     if (userProfile != null) {
                         // Populate EditText fields with user data
@@ -96,6 +99,8 @@ public class profile extends AppCompatActivity {
         String address = editAddress.getText().toString().trim();
         String bloodGroup = spinnerBloodGroup.getText().toString().trim();
         String gender = (radioButtonMale.isChecked()) ? "Male" : "Female";
+
+        Toast.makeText(this, "profile updated", Toast.LENGTH_SHORT).show();
 
         // Get the user's email from loadUserData()
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();

@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -43,6 +44,15 @@ public class home_maintenance extends AppCompatActivity {
         editPrice = findViewById(R.id.HomemaintenancepriceEditText);
         noteEditText = findViewById(R.id.HomemaintenancenoteEditText);
         saveButton = findViewById(R.id.HomemaintenancesaveButton);
+
+        // Populate the Spinner with food options
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.home_maintenance_options,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        optionsSpinner.setAdapter(adapter);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

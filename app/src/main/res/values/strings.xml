@@ -52,6 +52,36 @@
         <item>Products not covered in categories</item>
     </string-array>
 
+    <string-array name="personal_care_options">
+        <item>Soap and body wash</item>
+        <item>Shampoo and conditioner</item>
+        <item>Skin care products</item>
+        <item>Hair care products</item>
+        <item>Deodorant and antiperspirants</item>
+        <item>Oral care products</item>
+        <item>Shaving and hair removal products</item>
+        <item>Makeup and cosmetics</item>
+        <item>Fragrances and colognes</item>
+        <item>Baby care products</item>
+        <item>Other personal care items</item>
+    </string-array>
+
+    <string-array name="home_maintenance_options">
+        <item>Plumbing</item>
+        <item>Electrical</item>
+        <item>HVAC (Heating, Ventilation, and Air Conditioning)</item>
+        <item>Carpentry</item>
+        <item>Flooring</item>
+        <item>Painting and Drywall</item>
+        <item>Roofing</item>
+        <item>Guttering and Drainage</item>
+        <item>Appliance Repair</item>
+        <item>Lawn and Garden</item>
+        <item>Cleaning and Deodorizing</item>
+        <item>Security and Safety</item>
+        <item>Other Maintenance Tasks</item>
+    </string-array>
+
     <string-array name="insurance_options">
         <item>Motor insurance</item>
         <item>Health insurance</item>

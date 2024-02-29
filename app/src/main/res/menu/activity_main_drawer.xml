@@ -4,10 +4,7 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/changeprofile"
-            android:title="Change profile picture" />
+
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/refresh"

@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/blurry_background"
                 android:hint="Name"
                 android:inputType="text"
                 android:paddingLeft="10dp"
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/blurry_background"
                 android:hint="Email"
                 android:paddingTop="6dp"
                 android:textStyle="bold"
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/blurry_background"
                 android:hint="Date of Birth"
                 android:onClick="showDatePicker"
                 android:inputType="date"
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/blurry_background"
                 android:hint="Emergency Contact"
                 android:inputType="phone"
                 android:paddingLeft="10dp"
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="69dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/rectangle"
+                android:background="@drawable/blurry_background"
                 android:hint="Address"
                 android:paddingLeft="10dp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -85,9 +85,11 @@
                 android:layout_height="wrap_content"
                 android:text="Gender"
                 android:textSize="17dp"
+                android:background="@drawable/blurry_background"
                 />
             <RadioGroup
                 android:id="@+id/radioGroupGender"
+                android:background="@drawable/blurry_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -114,7 +116,8 @@
                 android:layout_height="wrap_content"
                 android:text="how many family members are there?"
                 android:textSize="17dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/blurry_background"/>
 
 
             <EditText
@@ -122,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/blurry_background"
                 android:hint="e.g 3"
                 android:paddingLeft="10dp"/>
 
@@ -131,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save"
-                android:background="@drawable/buttonshapewhitebg"
+                android:background="@drawable/blurry_background"
                 android:layout_marginBottom="20dp" />
 
         </LinearLayout>

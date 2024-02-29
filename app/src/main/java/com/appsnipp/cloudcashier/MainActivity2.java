@@ -181,7 +181,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                         return true;
                     case R.id.navigationHome:
                         return true;
-                    case R.id.navigationSearch:
+                    case R.id.navigationgraph:
+                        Intent profile1Intent = new Intent(MainActivity2.this, bar.class);
+                        startActivity(profile1Intent);
                         return true;
                     case R.id.navigationMenu:
                         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -231,9 +233,8 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+
+         if (id == R.id.nav_gallery) {
             Intent intent = new Intent(MainActivity2.this,recycleview.class);
             startActivity(intent);
 

@@ -62,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         item currentItem = items.get(position);
         holder.title.setText(currentItem.getTitle());
         holder.option.setText(currentItem.getOption());
-        holder.price.setText(currentItem.getPrice());
+        holder.price.setText((int) currentItem.getPrice());
         holder.note.setText(currentItem.getNote());
         holder.date.setText(currentItem.getDate());
     }

@@ -4,7 +4,7 @@ public class item {
 
     String title;
     String option;
-    String price;
+    double price;
     String note;
     String date;
 
@@ -16,7 +16,7 @@ public class item {
         this.date = date;
     }
 
-    public item(String title, String option, String price, String note) {
+    public item(String title, String option, double price, String note) {
         this.title = title;
         this.option = option;
         this.price = price;
@@ -40,11 +40,11 @@ public class item {
         this.option = option;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
