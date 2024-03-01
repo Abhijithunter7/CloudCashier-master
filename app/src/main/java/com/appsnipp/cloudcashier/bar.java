@@ -32,7 +32,7 @@ public class bar extends AppCompatActivity {
         setContentView(R.layout.graph);
 
         // Initialize Firebase reference
-        databaseReference = FirebaseDatabase.getInstance().getReference("your_data_path");
+        databaseReference = FirebaseDatabase.getInstance().getReference("transport");
 
         // Initialize bar chart
         barChart = findViewById(R.id.bar_chart);
