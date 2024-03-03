@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +9,26 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/utitext1"
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="72dp"
+        android:text="Utilities"
+        android:textColor="@color/bottomNavigationBackground"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/utilitiestitleView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/utilitiestitleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Title"
         android:textColor="@color/whiteTextColor"
         android:textSize="30sp"
@@ -24,44 +39,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/utiedit1"
+        android:id="@+id/utilitiestitleEditText"
         android:padding="4dp"
         android:layout_width="0dp"
         android:layout_height="39dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/glass_morph"
-        app:layout_constraintTop_toBottomOf="@+id/utitext1"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/utilitiestitleView"
+        tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/utitext2"
+        android:id="@+id/utilitiesoptionsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Options"
-        android:textSize="30sp"
         android:textColor="@color/whiteTextColor"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/utiedit1"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/utilitiestitleEditText" />
 
     <Spinner
-        android:id="@+id/utispin1"
+        android:id="@+id/utilitiesoptionsSpinner"
         android:layout_width="0dp"
         android:layout_height="39dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/glass_morph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/utitext2" />
+        app:layout_constraintTop_toBottomOf="@+id/utilitiesoptionsTextView" />
 
     <TextView
-        android:id="@+id/utitext3"
+        android:id="@+id/utilitiespriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="Price"
         android:textColor="@color/whiteTextColor"
         android:textSize="30sp"
@@ -69,52 +86,88 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/utispin1" />
+        app:layout_constraintTop_toBottomOf="@+id/utilitiesoptionsSpinner" />
 
     <EditText
-        android:id="@+id/utiedit2"
-        android:padding="4dp"
+        android:id="@+id/utilitiespriceEditText"
         android:layout_width="0dp"
         android:layout_height="39dp"
-        android:layout_marginTop="32dp"
-        android:inputType="numberDecimal"
+        android:layout_marginTop="12dp"
         android:background="@drawable/glass_morph"
+        android:inputType="numberDecimal"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/utitext3" />
+        app:layout_constraintTop_toBottomOf="@+id/utilitiespriceTextView" />
+
 
     <TextView
-        android:id="@+id/utitext4"
+        android:id="@+id/utilitiesnoteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Note"
-        android:textSize="30sp"
         android:textColor="@color/whiteTextColor"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/utiedit2"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/utilitiespriceEditText" />
 
     <EditText
-        android:id="@+id/utiedit3"
-        android:padding="4dp"
+        android:id="@+id/utilitiesnoteEditText"
         android:layout_width="0dp"
         android:layout_height="83dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/glass_morph"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/utitext4" />
+        app:layout_constraintTop_toBottomOf="@+id/utilitiesnoteTextView" />
+
+    <DatePicker
+        android:id="@+id/utilitiesdatePicker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/utilitiessaveButton"
+        android:visibility="gone" />
 
     <Button
-        android:id="@+id/saveButton1"
+        android:id="@+id/showDatePickerButton"
+        android:layout_width="99dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/blurry_background"
+        android:text="Select Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/utilitiesnoteEditText" />
+
+    <Button
+        android:id="@+id/graphutilities"
+        android:layout_width="102dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/blurry_background"
+        android:text="graph"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/utilitiesnoteEditText" />
+
+    <Button
+        android:id="@+id/utilitiessaveButton"
         android:layout_width="140dp"
         android:layout_height="47dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/blurry_background"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/utiedit3" />
+        app:layout_constraintTop_toBottomOf="@+id/utilitiesnoteEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

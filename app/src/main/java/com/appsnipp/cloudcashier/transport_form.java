@@ -1,16 +1,16 @@
 package com.appsnipp.cloudcashier;
 
-// transport_form.java
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,39 +19,48 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class transport_form extends AppCompatActivity {
 
-    private EditText titleEditText;
+    private EditText editTitle;
     private Spinner optionsSpinner;
-    private EditText priceEditText;
+    private EditText editPrice;
     private EditText editNote;
     private Button saveButton;
+    private Button showDatePickerButton,graph;
+    private DatePicker fooddatePicker;
 
-    private DatabaseReference transportRef;
     private FirebaseAuth auth;
+    private FirebaseDatabase mdatabase;
+    private DatabaseReference transportRef;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport_form);
 
         // Initialize Firebase Database reference
-        transportRef = FirebaseDatabase.getInstance().getReference().child("transport");
-
-        // Initialize Firebase Authentication
         auth = FirebaseAuth.getInstance();
+        mdatabase = FirebaseDatabase.getInstance();
+        FirebaseUser ccurrentUser = auth.getCurrentUser();
+        if (ccurrentUser != null) {
+            String userid = ccurrentUser.getUid();
+            transportRef = mdatabase.getReference().child(userid).child("transport");
+        }
 
-        // Initialize views
-        titleEditText = findViewById(R.id.titleEditText);
-        optionsSpinner = findViewById(R.id.optionsSpinner);
-        priceEditText = findViewById(R.id.priceEditText);
-        editNote = findViewById(R.id.noteEditText);
-        saveButton = findViewById(R.id.saveButton);
+        // Initialize UI elements
+        editTitle = findViewById(R.id.transporttitleEditText);
+        optionsSpinner = findViewById(R.id.transportoptionsSpinner);
+        editPrice = findViewById(R.id.transportpriceEditText);
+        editNote = findViewById(R.id.transportnoteEditText);
+        saveButton = findViewById(R.id.transportsaveButton);
+        showDatePickerButton = findViewById(R.id.showDatePickerButton);
+        fooddatePicker = findViewById(R.id.transportdatePicker);
+        graph = findViewById(R.id.graphtransport);
 
-        // Set up the Spinner (options)
+        // Populate the Spinner with food options
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.options_array,
@@ -60,52 +69,81 @@ public class transport_form extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         optionsSpinner.setAdapter(adapter);
 
-        // Handle Spinner item selection
-        optionsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        graph.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // You can do something with the selected option here
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing
+            public void onClick(View view) {
+                startActivity(new Intent(transport_form.this, transport_graph.class));
             }
         });
 
-        // Handle save button click
+        // Set an OnClickListener for the Save button
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the values from the EditText fields
-                String title = titleEditText.getText().toString();
+                // Get the values entered by the user
+                String title = editTitle.getText().toString();
                 String option = optionsSpinner.getSelectedItem().toString();
-                double price = Double.parseDouble(priceEditText.getText().toString());
+                double price = Double.parseDouble(editPrice.getText().toString());
                 String note = editNote.getText().toString();
+                String selectedDate = getSelectedDate();
 
-                // Get the current date and time
-                String dateTime = getCurrentDateTime();
-
-                // Get the current user's name
                 FirebaseUser user = auth.getCurrentUser();
                 String userName = user != null ? user.getDisplayName() : "Unknown User";
 
                 // Create a new object to represent the data
-                TransportData transportData = new TransportData(title, option, price, note, dateTime, userName);
+                TransportData foodda = new TransportData(title, option, price, note, selectedDate, userName);
 
                 // Save the data to Firebase
-                transportRef.push().setValue(transportData);
+                transportRef.push().setValue(foodda);
 
                 // Show a message or perform other actions if needed
                 String message = "Data saved to Firebase!";
                 Toast.makeText(transport_form.this, message, Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Set an OnClickListener for the Show Date Picker button
+        showDatePickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show the DatePicker
+                fooddatePicker.setVisibility(View.VISIBLE);
+                showDatePicker();
+            }
+        });
     }
 
-    // Helper method to get current date and time
-    private String getCurrentDateTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        return sdf.format(new Date());
+    private void showDatePicker() {
+        // Get the current date
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        // Create a DatePickerDialog and show it
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // Set the selected date in the DatePicker
+                        fooddatePicker.init(year, monthOfYear, dayOfMonth, null);
+                    }
+                }, year, month, day);
+
+        datePickerDialog.show();
+    }
+
+    private String getSelectedDate() {
+        // Get the selected date from the DatePicker
+        int day = fooddatePicker.getDayOfMonth();
+        int month = fooddatePicker.getMonth();
+        int year = fooddatePicker.getYear();
+
+        // Create a formatted date string
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        return sdf.format(calendar.getTime());
     }
 }

@@ -12,6 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".utilities_graph"
+            android:exported="false" />
+        <activity
+            android:name=".transport_graph"
+            android:exported="false" />
+        <activity
+            android:name=".personl_graph"
+            android:exported="false" />
+        <activity
+            android:name=".insurance_graph"
+            android:exported="false" />
+        <activity
+            android:name=".homemain_graph"
+            android:exported="false" />
+        <activity
+            android:name=".food_graph"
+            android:exported="false" />
+        <activity
+            android:name=".entertainment_graph"
+            android:exported="false" />
+        <activity
+            android:name=".bar"
+            android:exported="false" />
+        <activity
             android:name=".forget_password"
             android:exported="false" />
         <activity

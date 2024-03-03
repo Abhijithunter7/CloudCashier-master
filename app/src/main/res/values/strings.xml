@@ -117,6 +117,15 @@
         <item>art exhibits</item>
     </string-array>
 
+    <string-array name="months">
+        <item>1 Month</item>
+        <item>2 Months</item>
+        <item>3 Months</item>
+        <item>6 Months</item>
+        <item>8 Months</item>
+    </string-array>
+
+
     <string-array name="education_options">
         <item>formal education</item>
         <item>secondary education</item>

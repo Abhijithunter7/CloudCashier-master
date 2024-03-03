@@ -8,10 +8,10 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="245dp"
-        android:layout_height="66dp"
+        android:layout_width="310dp"
+        android:layout_height="85dp"
         android:paddingLeft="10dp"
-        android:text="Education Expense Graphical Representation "
+        android:text="homemaintenance Expense Graphical Representation "
         android:textColor="@color/Black"
         android:textSize="20sp"
         android:textStyle="bold"

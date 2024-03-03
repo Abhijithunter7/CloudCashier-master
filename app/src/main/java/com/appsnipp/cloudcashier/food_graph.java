@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class bar extends AppCompatActivity implements OnChartValueSelectedListener {
+public class food_graph extends AppCompatActivity implements OnChartValueSelectedListener {
 
     private DatabaseReference databaseReference;
     private BarChart barChart;
@@ -52,7 +52,7 @@ public class bar extends AppCompatActivity implements OnChartValueSelectedListen
         FirebaseUser ccurrentUser=auth.getCurrentUser();
         if(ccurrentUser!=null) {
             String userid = ccurrentUser.getUid();
-            databaseReference = mdatabase.getReference().child(userid).child("education");
+            databaseReference = mdatabase.getReference().child(userid).child("food");
         }
 
         // Initialize bar chart

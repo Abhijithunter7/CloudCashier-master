@@ -7,18 +7,18 @@ public class TransportData {
     private String note;
     private String userName;
 
-    private String dateTime;
+    private String selectedDate;
 
     public TransportData() {
         // Default constructor required for Firebase
     }
 
-    public TransportData(String title, String selectedOption, double price, String note, String dateTime,String userName) {
+    public TransportData(String title, String selectedOption, double price, String note, String selectedDate,String userName) {
         this.title = title;
         this.selectedOption = selectedOption;
         this.price = price;
         this.note = note;
-        this.dateTime = dateTime;
+        this.selectedDate = selectedDate;
     }
 
 
@@ -39,8 +39,8 @@ public class TransportData {
         return note;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getselectedDate() {
+        return selectedDate;
     }
 }
 

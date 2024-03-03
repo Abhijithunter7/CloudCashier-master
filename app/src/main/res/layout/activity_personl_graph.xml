@@ -11,7 +11,7 @@
         android:layout_width="245dp"
         android:layout_height="66dp"
         android:paddingLeft="10dp"
-        android:text="Education Expense Graphical Representation "
+        android:text="personalcare Expense Graphical Representation "
         android:textColor="@color/Black"
         android:textSize="20sp"
         android:textStyle="bold"

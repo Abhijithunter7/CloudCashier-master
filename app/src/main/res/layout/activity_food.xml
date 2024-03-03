@@ -9,16 +9,32 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="72dp"
+        android:text="Food"
+        android:textColor="@color/bottomNavigationBackground"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/foodtitleView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/foodtitleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:text="Title"
         android:textColor="@color/whiteTextColor"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +68,7 @@
         android:id="@+id/foodoptionsSpinner"
         android:layout_width="0dp"
         android:layout_height="39dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/glass_morph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +78,7 @@
         android:id="@+id/foodpriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="Price"
         android:textColor="@color/whiteTextColor"
         android:textSize="30sp"
@@ -74,15 +90,16 @@
 
     <EditText
         android:id="@+id/foodpriceEditText"
-        android:padding="4dp"
         android:layout_width="0dp"
         android:layout_height="39dp"
-        android:inputType="numberDecimal"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/glass_morph"
+        android:inputType="numberDecimal"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodpriceTextView" />
+
 
     <TextView
         android:id="@+id/foodnoteTextView"
@@ -99,20 +116,55 @@
 
     <EditText
         android:id="@+id/foodnoteEditText"
-        android:padding="4dp"
         android:layout_width="0dp"
         android:layout_height="83dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/glass_morph"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodnoteTextView" />
+
+    <DatePicker
+        android:id="@+id/fooddatePicker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodsaveButton"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/showDatePickerButton"
+        android:layout_width="99dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/blurry_background"
+        android:text="Select Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodnoteEditText" />
+
+    <Button
+        android:id="@+id/graphfood"
+        android:layout_width="102dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/blurry_background"
+        android:text="graph"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodnoteEditText" />
 
     <Button
         android:id="@+id/foodsaveButton"
         android:layout_width="140dp"
         android:layout_height="47dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/blurry_background"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
