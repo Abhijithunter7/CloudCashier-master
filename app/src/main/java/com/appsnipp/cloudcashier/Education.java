@@ -91,7 +91,7 @@ public class Education extends AppCompatActivity {
                 String userName = user != null ? user.getDisplayName() : "Unknown User";
 
                 // Create a new object to represent the data
-                    TransportData education = new TransportData(title, option, price, note, selectedDate, userName);
+                    TransportData education = new TransportData(title, option, price, note, selectedDate);
 
                 // Save the data to Firebase
                 transportRef.push().setValue(education);

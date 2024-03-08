@@ -235,8 +235,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
 
 
          if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(MainActivity2.this,recycleview.class);
-            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 

@@ -72,4 +72,16 @@
         <item name="android:layout_alignParentTop">true</item>
     </style>
 
+    <style name="LabelStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/darkTextColor</item>
+    </style>
+
+    <style name="ContentStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/darkTextColor</item>
+    </style>
+
+
 </resources>

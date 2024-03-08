@@ -29,7 +29,7 @@ public class transport_form extends AppCompatActivity {
     private EditText editPrice;
     private EditText editNote;
     private Button saveButton;
-    private Button showDatePickerButton,graph;
+    private Button showDatePickerButton,graph,pastexpense;
     private DatePicker fooddatePicker;
 
     private FirebaseAuth auth;
@@ -59,6 +59,7 @@ public class transport_form extends AppCompatActivity {
         showDatePickerButton = findViewById(R.id.showDatePickerButton);
         fooddatePicker = findViewById(R.id.transportdatePicker);
         graph = findViewById(R.id.graphtransport);
+        pastexpense = findViewById(R.id.transportpasterxpence);
 
         // Populate the Spinner with food options
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -73,6 +74,14 @@ public class transport_form extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(transport_form.this, transport_graph.class));
+            }
+        });
+
+        pastexpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(transport_form.this,transportrecy.class));
+
             }
         });
 
@@ -91,7 +100,7 @@ public class transport_form extends AppCompatActivity {
                 String userName = user != null ? user.getDisplayName() : "Unknown User";
 
                 // Create a new object to represent the data
-                TransportData foodda = new TransportData(title, option, price, note, selectedDate, userName);
+                TransportData foodda = new TransportData(title, option, price, note, selectedDate);
 
                 // Save the data to Firebase
                 transportRef.push().setValue(foodda);

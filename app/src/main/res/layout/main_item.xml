@@ -7,62 +7,125 @@
     android:elevation="6dp"
     app:cardUseCompatPadding="true"
     android:background="@drawable/glass_morph">
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/side_nav_bar"
         android:padding="15dp"
-        android:background="@drawable/side_nav_bar">
+        >
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/tittlerecy"
+            android:layout_width="386dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="100dp"            android:padding="6dp"
             android:text="Title"
-            android:textStyle="bold"
-            android:padding="6dp"
-            android:textSize="25sp"
-            android:textColor="@color/darkTextColor"/>
+            android:textColor="@color/darkTextColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/optionrecy"
-            android:padding="6dp"
-            android:text="selected options"
+            android:layout_width="386dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tittlerecy"
-            android:textSize="25sp"
-            android:textColor="@color/darkTextColor"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="100dp"            android:padding="6dp"
+            android:text="selected options"
+            android:textColor="@color/darkTextColor"
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/pricerecy"
-            android:padding="6dp"
-            android:text="price"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/optionrecy"
-            android:textSize="25sp"
-            android:textColor="@color/darkTextColor"/>
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="100dp"            android:padding="6dp"
+            android:text="price"
+            android:textColor="@color/darkTextColor"
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:padding="6dp"
-            android:layout_height="wrap_content"
             android:id="@+id/noterecy"
-            android:text="note"
+            android:layout_width="386dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/pricerecy"
-            android:textSize="25sp"
-            android:textColor="@color/darkTextColor"/>
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="100dp"            android:padding="6dp"
+            android:text="note"
+            android:textColor="@color/darkTextColor"
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:padding="6dp"
-            android:layout_height="wrap_content"
             android:id="@+id/datels"
-            android:text="date"
+            android:layout_width="386dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/noterecy"
-            android:textSize="25sp"
-            android:textColor="@color/darkTextColor"/>
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="100dp"
+            android:padding="6dp"
+            android:text="date"
+            android:textColor="@color/darkTextColor"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="4dp"
+            android:text="Title:"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView17"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="22dp"
+            android:text="option:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView18"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="21dp"
+            android:text="price:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView19"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:text="note:"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView20"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="18dp"
+            android:text="date:"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 

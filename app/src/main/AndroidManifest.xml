@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".transportrecy"
+            android:exported="false" />
+        <activity
             android:name=".utilities_graph"
             android:exported="false" />
         <activity

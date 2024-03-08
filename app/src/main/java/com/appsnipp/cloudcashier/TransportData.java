@@ -5,7 +5,6 @@ public class TransportData {
     private String selectedOption;
     private double price;
     private String note;
-    private String userName;
 
     private String selectedDate;
 
@@ -13,7 +12,7 @@ public class TransportData {
         // Default constructor required for Firebase
     }
 
-    public TransportData(String title, String selectedOption, double price, String note, String selectedDate,String userName) {
+    public TransportData(String title, String selectedOption, double price, String note, String selectedDate) {
         this.title = title;
         this.selectedOption = selectedOption;
         this.price = price;
@@ -30,6 +29,7 @@ public class TransportData {
     public String getselectedOption() {
         return selectedOption;
     }
+
 
     public double getPrice() {
         return price;
