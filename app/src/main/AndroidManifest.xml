@@ -12,6 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".educationrecy"
+            android:exported="false" />
+        <activity
+            android:name=".entertainmentrecy"
+            android:exported="false" />
+        <activity
+            android:name=".foodrecy"
+            android:exported="false" />
+        <activity
+            android:name=".homemainrecy"
+            android:exported="false" />
+        <activity
+            android:name=".insurancerecy"
+            android:exported="false" />
+        <activity
+            android:name=".personalrecy"
+            android:exported="false" />
+        <activity
+            android:name=".utilityrecy"
+            android:exported="false" />
+        <activity
             android:name=".transportrecy"
             android:exported="false" />
         <activity

@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,12 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class transportrecy extends AppCompatActivity implements TransportDataAdapter.OnItemClickListener {
+public class personalrecy extends AppCompatActivity implements TransportDataAdapter.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private TransportDataAdapter transportDataAdapter;
     private List<TransportData> transportDataList;
-    private DatabaseReference transportRef;
+    private DatabaseReference personalref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
         FirebaseUser ccurrentUser = auth.getCurrentUser();
         if (ccurrentUser != null) {
             String userid = ccurrentUser.getUid();
-            transportRef = mdatabase.getReference().child(userid).child("transport");
+            personalref = mdatabase.getReference().child(userid).child("personal care");
         }
 
         // Initialize recycler view
@@ -58,13 +57,12 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
 
         // Fetch data from Firebase and update the adapter
         fetchDataFromFirebase();
-
         // Set item click listener
         transportDataAdapter.setOnItemClickListener(this);
     }
 
     private void fetchDataFromFirebase() {
-        transportRef.addValueEventListener(new ValueEventListener() {
+        personalref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 transportDataList.clear(); // Clear the existing data
@@ -89,11 +87,10 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
     @Override
     public void onNoteClickListener(int position) {
         TransportData clickedNote = transportDataList.get(position);
-        Intent intent = new Intent(transportrecy.this, transport_form.class);
+        Intent intent = new Intent(personalrecy.this, personal_care.class);
         intent.putExtra("noteId", clickedNote.getId());
         startActivity(intent);
     }
-
     @Override
     public void onLongClickListener(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -116,14 +113,14 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
     private void deleteNote(int position) {
         TransportData noteToDelete = transportDataList.get(position);
         String noteId = noteToDelete.getId();
-        DatabaseReference noteRef = transportRef.child(noteId);
+        DatabaseReference noteRef = personalref.child(noteId);
         noteRef.removeValue(new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error != null) {
-                    Toast.makeText(transportrecy.this, "Failed to delete note: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(personalrecy.this, "Failed to delete data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(transportrecy.this, "Note deleted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(personalrecy.this, "data deleted successfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });

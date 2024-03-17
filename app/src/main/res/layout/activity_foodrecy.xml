@@ -19,10 +19,8 @@
         android:textColor="@color/bottomNavigationBackground"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleid"
-        android:layout_width="wrap_content"
+        android:id="@+id/foodrecycler"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/main_item" />
-
-
 </LinearLayout>

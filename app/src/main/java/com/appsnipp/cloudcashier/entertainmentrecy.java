@@ -24,17 +24,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class transportrecy extends AppCompatActivity implements TransportDataAdapter.OnItemClickListener {
+public class entertainmentrecy extends AppCompatActivity implements TransportDataAdapter.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private TransportDataAdapter transportDataAdapter;
     private List<TransportData> transportDataList;
-    private DatabaseReference transportRef;
+    private DatabaseReference entertainmentRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.transport_item); // Replace with your actual layout file name
+        setContentView(R.layout.activity_entertainmentrecy); // Replace with your actual layout file name
 
         // Initialize data list
         transportDataList = new ArrayList<>();
@@ -45,11 +45,11 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
         FirebaseUser ccurrentUser = auth.getCurrentUser();
         if (ccurrentUser != null) {
             String userid = ccurrentUser.getUid();
-            transportRef = mdatabase.getReference().child(userid).child("transport");
+            entertainmentRef = mdatabase.getReference().child(userid).child("entertainment");
         }
 
         // Initialize recycler view
-        recyclerView = findViewById(R.id.recycleid); // Replace with the actual ID from your layout
+        recyclerView = findViewById(R.id.entertainmentrecycler); // Replace with the actual ID from your layout
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Create and set adapter
@@ -58,13 +58,12 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
 
         // Fetch data from Firebase and update the adapter
         fetchDataFromFirebase();
-
         // Set item click listener
         transportDataAdapter.setOnItemClickListener(this);
     }
 
     private void fetchDataFromFirebase() {
-        transportRef.addValueEventListener(new ValueEventListener() {
+        entertainmentRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 transportDataList.clear(); // Clear the existing data
@@ -89,7 +88,7 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
     @Override
     public void onNoteClickListener(int position) {
         TransportData clickedNote = transportDataList.get(position);
-        Intent intent = new Intent(transportrecy.this, transport_form.class);
+        Intent intent = new Intent(entertainmentrecy.this, entertainment.class);
         intent.putExtra("noteId", clickedNote.getId());
         startActivity(intent);
     }
@@ -116,14 +115,14 @@ public class transportrecy extends AppCompatActivity implements TransportDataAda
     private void deleteNote(int position) {
         TransportData noteToDelete = transportDataList.get(position);
         String noteId = noteToDelete.getId();
-        DatabaseReference noteRef = transportRef.child(noteId);
+        DatabaseReference noteRef = entertainmentRef.child(noteId);
         noteRef.removeValue(new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error != null) {
-                    Toast.makeText(transportrecy.this, "Failed to delete note: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(entertainmentrecy.this, "Failed to delete note: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(transportrecy.this, "Note deleted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(entertainmentrecy.this, "Note deleted successfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });
