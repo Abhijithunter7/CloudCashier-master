@@ -2,6 +2,7 @@ package com.appsnipp.cloudcashier;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,12 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +30,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,13 +47,21 @@ public class utilities_form extends AppCompatActivity {
     private EditText editPrice;
     private EditText editNote;
     private Button saveButton;
-    private Button showDatePickerButton,graph, pastexpense;
+    private Button showDatePickerButton, graph, pastexpense;
     private DatePicker fooddatePicker;
+
     private String noteId;
+    private ImageView backgroundImageView;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private DatabaseReference backgroundRef;
 
     private FirebaseAuth auth;
     private FirebaseDatabase mdatabase;
     private DatabaseReference transportRef;
+
+    // Declare a RequestManager for Glide
+    private RequestManager glide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +75,12 @@ public class utilities_form extends AppCompatActivity {
         if (ccurrentUser != null) {
             String userid = ccurrentUser.getUid();
             transportRef = mdatabase.getReference().child(userid).child("utilities");
+
+            backgroundRef = mdatabase.getReference().child(userid).child("backgroundURL");
         }
+
+        // Initialize Glide RequestManager
+        glide = Glide.with(this);
 
         // Initialize UI elements
         editTitle = findViewById(R.id.utilitiestitleEditText);
@@ -68,6 +92,35 @@ public class utilities_form extends AppCompatActivity {
         fooddatePicker = findViewById(R.id.utilitiesdatePicker);
         graph = findViewById(R.id.graphutilities);
         pastexpense = findViewById(R.id.utilitypast);
+        backgroundImageView = findViewById(R.id.backgroundImageView);
+
+        backgroundRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String backgroundImageURL = snapshot.getValue(String.class);
+                    if (backgroundImageURL != null && !backgroundImageURL.isEmpty()) {
+                        // Set the background image using Glide or any other image loading library
+                        glide.load(backgroundImageURL).into(backgroundImageView);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("FirebaseError", "Failed to read background URL.", error.toException());
+            }
+        });
+
+        // Set OnClickListener for custom TextView
+        TextView customTextView = findViewById(R.id.utilitycustom);
+        customTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open image selection intent
+                openImageChooser();
+            }
+        });
 
         // Populate the Spinner with food options
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -87,7 +140,6 @@ public class utilities_form extends AppCompatActivity {
                 fetchDataFromFirebase(noteId);
             }
         }
-
 
         graph.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,11 +212,6 @@ public class utilities_form extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
         // Set an OnClickListener for the Show Date Picker button
         showDatePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +222,17 @@ public class utilities_form extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Check if the activity is not destroyed before clearing Glide requests
+        if (!isFinishing()) {
+            // Clear Glide requests associated with the backgroundImageView
+            Glide.with(this).clear(backgroundImageView);
+        }
+    }
+
 
     private void fetchDataFromFirebase(String noteId) {
         DatabaseReference noteRef = transportRef.child(noteId);
@@ -224,6 +282,87 @@ public class utilities_form extends AppCompatActivity {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         fooddatePicker.init(year, month, day, null);
+    }
+
+    // Method to open image chooser intent
+    private void openImageChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    // Handle the result of image selection intent
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Check if the request code is the same as defined above and if the result is OK
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            // Get the Uri of the selected image
+            Uri filePath = data.getData();
+
+            // Upload the image to Firebase Storage and set it as background
+            uploadImageToFirebaseAndSetBackground(filePath);
+        }
+    }
+
+    private void uploadImageToFirebaseAndSetBackground(Uri filePath) {
+        if (filePath != null) {
+            // Get reference to Firebase Storage
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+            // Create a reference to "backgrounds" folder and specify the file name
+            StorageReference backgroundRef = storageRef.child("backgrounds/background.jpg");
+
+            // Upload the file to Firebase Storage
+            backgroundRef.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // Get the download URL of the uploaded file
+                            backgroundRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    // Save the image URL to Realtime Database for persistence
+                                    saveImageURLToRealtimeDatabase(uri.toString());
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle any errors
+                                    Toast.makeText(utilities_form.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Handle any errors
+                            Toast.makeText(utilities_form.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    // Save image URL to Firebase Realtime Database
+    private void saveImageURLToRealtimeDatabase(String imageURL) {
+        // Set the background image URL in the Realtime Database
+        backgroundRef.setValue(imageURL)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Background image URL saved successfully
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle any errors
+                        Toast.makeText(utilities_form.this, "Failed to save background URL", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void updateDataInFirebase(String title, String option, double price, String note, String selectedDate) {

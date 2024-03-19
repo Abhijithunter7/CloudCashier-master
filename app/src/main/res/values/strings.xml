@@ -135,6 +135,10 @@
         <item>informal education</item>
     </string-array>
 
+
+    <string name="default_notification_channel_id" translatable="false">YOUR_CHANNEL_ID</string>
+
+
 </resources>
 
 

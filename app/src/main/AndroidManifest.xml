@@ -3,6 +3,18 @@
     package="com.appsnipp.cloudcashier">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- Add permissions for notifications -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Add permission to receive notifications -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
 
     <application
         android:allowBackup="true"
@@ -63,9 +75,6 @@
             android:name=".forget_password"
             android:exported="false" />
         <activity
-            android:name=".recycleview"
-            android:exported="false" />
-        <activity
             android:name=".profile"
             android:exported="false" />
         <activity
@@ -112,6 +121,9 @@
             android:exported="true"
             android:label="@string/CloudCashier"
             android:theme="@style/AppTheme.NoActionBar" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
     </application>
 
 </manifest>

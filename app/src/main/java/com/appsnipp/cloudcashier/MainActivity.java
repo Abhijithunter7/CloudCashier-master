@@ -69,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
             public void onSwipeRight() {
                 if (count == 0) {
                     imageView.setImageResource(R.drawable.good_night_img);
-                    textView.setText("Night");
+                    textView.setText("CloudcCashier");
                     count = 1;
                 } else {
                     imageView.setImageResource(R.drawable.good_morning_img);
-                    textView.setText("Morning");
+                    textView.setText("CloudCashier");
                     count = 0;
                 }
             }
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
             public void onSwipeLeft() {
                 if (count == 0) {
                     imageView.setImageResource(R.drawable.good_night_img);
-                    textView.setText("Night");
+                    textView.setText("CloudCashier");
                     count = 1;
                 } else {
                     imageView.setImageResource(R.drawable.good_morning_img);
-                    textView.setText("Morning");
+                    textView.setText("CloudCashier");
                     count = 0;
                 }
             }
